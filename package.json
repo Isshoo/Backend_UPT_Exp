@@ -4,14 +4,14 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx --watch --env-file .env src/index.ts",
-    "start": "node --env-file .env dist/index.js",
-    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsx --watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc && tsup",
     "type-check": "tsc --noEmit",
-    "lint": "eslint .src/**/*.{js,jsx,ts,tsx}",
-    "lint:fix": "eslint --fix .src/**/*.{js,jsx,ts,tsx}",
-    "format": "prettier --write .src/**/*.{js,jsx,ts,tsx,json,css,md}",
-    "format:check": "prettier --check .src/**/*.{js,jsx,ts,tsx,json,css,md}",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
     "test": "vitest",
     "test:run": "vitest --run",
     "test:ui": "vitest --ui",
@@ -25,8 +25,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.15.0",
     "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1",
     "uuid": "^11.1.0",
     "winston": "^3.17.0",
     "zod": "^4.1.5"
@@ -35,17 +40,26 @@
     "@eslint/js": "^9.35.0",
     "@tsconfig/node22": "^22.0.2",
     "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^24.3.1",
     "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/eslint-plugin": "^1.3.8",
+    "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "eslint-plugin-perfectionist": "^4.15.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "prisma": "^6.15.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.42.0",
     "vitest": "^3.2.4"
@@ -58,5 +72,18 @@
     "*.{json,yml,yaml,md}": [
       "prettier --check"
     ]
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "dts": true,
+    "sourcemap": true,
+    "clean": true,
+    "outDir": "dist"
   }
 }
