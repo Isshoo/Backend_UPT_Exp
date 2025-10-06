@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
@@ -8,8 +7,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
-    "target": "es2016",
-    "moduleResolution": "node",
+    "target": "es2020",
     "paths": {
       "#/*": ["./src/*"]
     }
