@@ -11,5 +11,5 @@ export const ENV = {
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT,
+  PORT: process.env.PORT ?? "3000",
 };
